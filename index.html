@@ -1,0 +1,45 @@
+<html>
+	
+<head>
+	
+</head>
+
+<body>
+	
+	<h2>FCO Swim Meet Event Tracker</h2>
+	<p>Date: <span id="date"></span></p>
+	<h1>Event: <span id="event"></span></h1>
+	
+<script type="text/javascript">
+
+var spreadsheet_id = "13y1LPVMfteEI9Sh7bMdxqQo2y1rwsSSu1PKqvtls5JQ";
+
+var tab_name = "Sheet1";
+var api_key = "AIzaSyDhiPGDzoGQcIaD4iTiMeL6DAjFAy0H09M";
+
+var url = 'https://sheets.googleapis.com/v4/spreadsheets/' +
+		   spreadsheet_id + '/values/' + tab_name +
+		   '?alt=json&key=' + api_key;
+  
+  async function loadData() {
+	  const response = await fetch(url);
+	  const data = await response.json();
+	  console.log(data); 
+	 
+	
+	if ( data.values ) {
+		document.getElementById('date').innerHTML = data.values[1][0]; 
+		document.getElementById('event').innerHTML = data.values[1][1]; 
+	}
+	
+	}  
+	 
+	loadData(); // MAKES THE MAGIC HAPPEN 
+	
+	
+	  
+</script>
+
+</body>
+
+</html>
